@@ -42,7 +42,7 @@ This application's folder structure follows the Model-View-Controller paradigm. 
 
 Dependencies Installation Command:
 ```md
-npm install express-handlebars mysql2 sequelize dotenv bcrypt express-session connect-session-sequelize
+npm install express-handlebars mysql2 sequelize dotenv bcrypt express-session connect-session-sequelize express
 ```
 ## License
 This project is covered under the MIT license. 
