@@ -21,6 +21,14 @@ User.init(
       allowNull: false,
       unique: true,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+      validate: {
+        isEmail: true,
+      }
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -40,7 +48,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'User',
+    modelName: 'user',
   }
 );
 
