@@ -13,10 +13,6 @@
   },
   "author": "taylor25et",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Taylor25et/HW14-Tech-Blog/issues"
-  },
-  "homepage": "https://github.com/Taylor25et/HW14-Tech-Blog#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.3",
