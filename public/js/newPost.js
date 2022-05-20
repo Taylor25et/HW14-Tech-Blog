@@ -15,8 +15,5 @@ async function newPost(event) {
         alert('Failed to add. Check dashboard.js');
       }
 }
-document.querySelector("#newPost button").addEventListener("click", newPost);
+document.querySelector("#newPost button").addEventListener("submit", newPost);
 
-// async function newFormHandler(event) {
-//   event.preventDefault(); 
-// }

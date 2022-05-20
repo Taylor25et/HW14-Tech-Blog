@@ -10,6 +10,55 @@ router.get("/", async (req, res) => {
           model: User,
           attributes: ["username"],
         },
+      ],
+      order: [["created_at", "DESC"]],
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+    
+    console.log(posts)
+
+    res.status(200).render("homepage", {
+      posts,
+      logged_in: req.session.logged_in,
+      username: req.session.username,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/posts/:id", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        User,
+        {
+          model: Comment,
+          include: [User],
+        },
+      ]
+    });
+
+    const post = postData.get({ plain: true });
+
+    res.status(200).render("singlePost", {
+      post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
         {
           model: Comment,
         },
@@ -19,10 +68,20 @@ router.get("/", async (req, res) => {
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.status(200).render("homepage", {
+    res.render("dashboard", {
       posts,
       logged_in: req.session.logged_in,
       username: req.session.username,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/dashboard/new", withAuth, async (req, res) => {
+  try {
+    res.render("newPost", {
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);

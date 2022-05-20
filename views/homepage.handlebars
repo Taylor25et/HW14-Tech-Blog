@@ -1,8 +1,20 @@
-<section>
-    {{#each posts as |post|}}
-    <div>
-        
+<!-- Content section-->
+<section class="py-5">
+    {{#each posts }}
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>
+                    <a href="/posts/{{id}}">{{title}}</a>
+                </h2>
+                <p class="lead">
+                    Posted by <strong>{{user.username}}</strong> on <strong>{{format_date createdAt}}</strong>
+                </p>
+                <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting here
+                    on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the
+                    universe.</p>
+            </div>
+        </div>
     </div>
-
     {{/each}}
 </section>

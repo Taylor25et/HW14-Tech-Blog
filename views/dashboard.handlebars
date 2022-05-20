@@ -1,0 +1,20 @@
+
+<a href="/dashboard/new">new post</a>
+<!-- Content section-->
+<section class="py-5">
+    {{#each posts }}
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>
+                    <a href="dashboard/edit/{{id}}">{{title}}</a>
+                </h2>
+                <p class="lead">
+                    Posted by <strong>{{post.user.username}}</strong> on <strong>{{format_date post.createdAt}}</strong>
+                </p>
+                <p class="mb-0"></p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</section>

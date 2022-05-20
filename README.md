@@ -51,6 +51,9 @@ This project is covered under the MIT license.
 ## Contributing
 This project would not have been possible without the contributions credited in the links below.
 
+bootstrap css template https://startbootstrap.com/template/full-width-pics
+bootstrap form control https://getbootstrap.com/docs/5.1/forms/form-control/
+
 ## Tests
 For testing opportunities please follow along closely to the video instructions and make adjustments to your code when needed.
 
