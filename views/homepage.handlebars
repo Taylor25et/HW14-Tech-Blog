@@ -1,4 +1,5 @@
 <!-- Content section-->
+
 <section class="py-5">
     {{#each posts }}
     <div class="container my-5">
@@ -10,9 +11,7 @@
                 <p class="lead">
                     Posted by <strong>{{user.username}}</strong> on <strong>{{format_date createdAt}}</strong>
                 </p>
-                <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting here
-                    on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the
-                    universe.</p>
+                <p class="mb-0">{{content}}</p>
             </div>
         </div>
     </div>
