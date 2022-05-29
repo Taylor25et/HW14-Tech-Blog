@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     
     console.log(posts)
 
-    res.status(200).render("homepage", {
+    res.status(200).render("home", {
       posts,
       logged_in: req.session.logged_in,
       username: req.session.username,
@@ -28,65 +28,66 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/posts/:id", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        User,
-        {
-          model: Comment,
-          include: [User],
-        },
-      ]
-    });
 
-    const post = postData.get({ plain: true });
+// router.get("/view/:id", withAuth, async (req, res) => {
+//   try {
+//     const postData = await Post.findByPk(req.params.id, {
+//       include: [
+//         User,
+//         {
+//           model: Comment,
+//           include: [User],
+//         },
+//       ]
+//     });
 
-    res.status(200).render("singlePost", {
-      post,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     const post = postData.get({ plain: true });
 
-router.get("/dashboard", withAuth, async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Comment,
-        },
-      ],
-      order: [["created_at", "DESC"]],
-    });
+//     res.status(200).render("singlePost", {
+//       post,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
-    const posts = postData.map((post) => post.get({ plain: true }));
+// router.get("/home", withAuth, async (req, res) => {
+//   try {
+//     const postData = await Post.findAll({
+//       include: [
+//         {
+//           model: User,
+//           attributes: ["username"],
+//         },
+//         {
+//           model: Comment,
+//         },
+//       ],
+//       order: [["created_at", "DESC"]],
+//     });
 
-    res.render("dashboard", {
-      posts,
-      logged_in: req.session.logged_in,
-      username: req.session.username,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     const posts = postData.map((post) => post.get({ plain: true }));
 
-router.get("/dashboard/new", withAuth, async (req, res) => {
-  try {
-    res.render("newPost", {
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render("home", {
+//       posts,
+//       logged_in: req.session.logged_in,
+//       username: req.session.username,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get("/myprofile", withAuth, async (req, res) => {
+//   try {
+//     res.render("newPost", {
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {

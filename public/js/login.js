@@ -5,7 +5,7 @@ const login = async (event) => {
   const username = document.querySelector("#username-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
-  if (username && password) {
+  if (username && password) { 
     // Send a POST request to the API endpoint
     const response = await fetch("/api/users/login", {
       method: "POST",
