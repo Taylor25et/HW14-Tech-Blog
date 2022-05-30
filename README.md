@@ -53,6 +53,7 @@ This project would not have been possible without the contributions credited in 
 
 bootstrap css template https://startbootstrap.com/template/full-width-pics
 bootstrap form control https://getbootstrap.com/docs/5.1/forms/form-control/
+template for posts https://www.bootdey.com/snippets/view/bs4-forum#html
 
 ## Tests
 For testing opportunities please follow along closely to the video instructions and make adjustments to your code when needed.

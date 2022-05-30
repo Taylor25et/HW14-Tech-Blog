@@ -19,17 +19,17 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>
-                    <a href="/api/view/{{post.id}}">{{post.title}}</a>
+                    <a href="/view/{{post.id}}">{{post.title}}</a>
                 </h2>
                 <p class="lead"><strong>{{post.user.username}}</strong></p>
                 <p class="mb-0">{{post.content}} <br> {{format_date post.createdAt}}</p>
                 <div>
-                    <p>{{post.comments.length}} replies</p>
-                    <a href="/api/view/{{post.id}}"><strong>click to view full post & comments</strong></a>
+                    <p>{{post.comments.length}} Replies</p>
+                    <a href="/view/{{post.id}}"><strong>click to view full post & comments</strong></a>
                 </div>
             </div>
         </div>
     </div>
     {{/each}}
 </section>
-<script src="/js/posts.js"></script>
+<script src="/js/profile.js"></script>

@@ -24,7 +24,7 @@ router.get("/:id", async (req, res) => {
     const post = postData.get({ plain: true });
     res
       .status(200)
-      .render("post", {
+      .render("view", {
         post,
         logged_in: req.session.logged_in,
         username: req.session.username,

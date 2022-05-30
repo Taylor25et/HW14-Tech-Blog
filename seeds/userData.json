@@ -3,48 +3,56 @@
         "id": "1",
         "username": "slowersites",
         "email": "oddfolls@gmail.com",
-        "password": "huijnjk"
+        "password": "huijnjk",
+        "img": "https://bootdey.com/img/Content/avatar/avatar1.png"
     },
     {
         "id": "2",
         "username": "otterhtml",
         "email": "gatesof@gmail.com",
-        "password": "rdeartae"
+        "password": "rdeartae",
+        "img": "https://bootdey.com/img/Content/avatar/avatar2.png"
     },
     {
         "id": "3",
         "username": "outofbats",
         "email": "",
-        "password": "rewaREAEd"
+        "password": "rewaREAEd",
+        "img": "https://bootdey.com/img/Content/avatar/avatar3.png"
     },
     {
         "id": "4",
         "username": "no_really",
         "email": "wildsly@aol.com",
-        "password": "serdfe"
+        "password": "serdfe",
+        "img": "https://bootdey.com/img/Content/avatar/avatar4.png"
     },
     {
         "id": "5",
         "username": "csssouls",
         "email": "worldsfours@gmail.com",
-        "password": "ygtrjjy"
+        "password": "ygtrjjy",
+        "img": "https://bootdey.com/img/Content/avatar/avatar5.png"
     },
     {
         "id": "6",
         "username": "sql_simp",
         "email": "butter@gmail.com",
-        "password": "rtswytfed"
+        "password": "rtswytfed",
+        "img": "https://bootdey.com/img/Content/avatar/avatar3.png"
     },
     {
         "id": "7",
         "username": "softhoof",
         "email": "golsfor@gmail.com",
-        "password": "wrgrfdxh"
+        "password": "wrgrfdxh",
+        "img": "https://bootdey.com/img/Content/avatar/avatar5.png"
     },
     {
         "id": "8",
         "username": "server",
         "email": "poorsimp@gmail.com",
-        "password": "resgytrs"
+        "password": "resgytrs",
+        "img": "https://bootdey.com/img/Content/avatar/avatar1.png"
     }
 ]

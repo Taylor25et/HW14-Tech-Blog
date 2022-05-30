@@ -1,20 +1,56 @@
+{{!-- viewing a single post --}}
+
 <section class="py-5">
-    {{#each posts as |post| }}
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <h2>
-                    <a href="/api/view/{{post.id}}">{{post.title}}</a>
+                <img src="{{user.img}}"
+                    width="50" alt="User" /></a>
+                <h2 id='post-title' data-id="{{post.id}}">{{post.title}}
                 </h2>
-                <p class="lead"><strong>{{post.user.username}}</strong></p>
-                <p class="mb-0">{{post.content}} <br> {{format_date post.createdAt}}</p>
+                <p class="lead text-muted">{{post.user.username}} on {{format_date post.createdAt}}</p>
+                <p class="mb-0">{{post.content}}</p>
+                {{#each post.comments as |comment|}}
                 <div>
-                    <p>{{post.comments.length}} replies</p>
-                    <a href="/api/view/{{post.id}}"><strong>click to view full post & comments</strong></a>
+                    <p>{{comment.user.username}} : {{comment.comment}} on {{format_date comment.createdAt}}</p>
+                </div>
+                {{/each}}
+                <div>
+                    <p class="lead">Reply to {{post.user.username}}</p>
+                    <form name="comment"></form>
+                </div>
+                <button class="btn" type="submit">Add Comment</button>
+                <p class="auth">Please <a href="/login">signup or login</a> to leave a reply.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="/js/comment.js"></script>
+
+<!-- Forum List -->
+<div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+    <div class="card mb-2">
+        <div class="card-body p-2 p-sm-3">
+            <div class="media forum-item">
+                <a href="#" data-toggle="collapse" data-target=".forum-content"><img
+                        src="https://bootdey.com/img/Content/avatar/avatar1.png" class="col-sm mr-3 rounded-circle"
+                        width="50" alt="User" /></a>
+                <div class="col-sm media-body">
+                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Realtime
+                            fetching data</a></h6>
+                    <p class="text-secondary">
+                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                    </p>
+                    <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span
+                            class="text-secondary font-weight-bold">13 minutes ago</span></p>
+                </div>
+                <div class="text-muted small text-center align-self-center">
+                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
+                    <span><i class="far fa-comment ml-2"></i> 3</span>
                 </div>
             </div>
         </div>
     </div>
-    {{/each}}
-</section>
-<script src="/js/posts.js"></script>
+</div>
