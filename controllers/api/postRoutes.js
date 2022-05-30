@@ -9,11 +9,11 @@ router.get("/:id", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["username"],
+          attributes: ["username", "img"],
         },
         {
           model: Comment,
-          include: [{ model: User, attributes: ["username"] }],
+          include: [{ model: User, attributes: ["username", "img"] }],
         },
       ],
     });
@@ -28,6 +28,7 @@ router.get("/:id", async (req, res) => {
         post,
         logged_in: req.session.logged_in,
         username: req.session.username,
+        img: req.session.img,
       });
   } catch (err) {
     res.status(500).json({ message: "Failed to load, check postRoutes.js" });

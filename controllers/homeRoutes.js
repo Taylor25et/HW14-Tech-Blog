@@ -8,10 +8,12 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["username"],
+          attributes: ["username", "img"],
         },
+        {
+          model: Comment
+        }
       ],
-      order: [["created_at", "DESC"]],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
@@ -19,6 +21,7 @@ router.get("/", async (req, res) => {
       posts,
       logged_in: req.session.logged_in,
       username: req.session.username,
+      img: req.session.img
     });
   } catch (err) {
     res.status(500).json(err);
@@ -48,43 +51,6 @@ router.get("/view/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// router.get("/home", withAuth, async (req, res) => {
-//   try {
-//     const postData = await Post.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ["username"],
-//         },
-//         {
-//           model: Comment,
-//         },
-//       ],
-//       order: [["created_at", "DESC"]],
-//     });
-
-//     const posts = postData.map((post) => post.get({ plain: true }));
-
-//     res.render("home", {
-//       posts,
-//       logged_in: req.session.logged_in,
-//       username: req.session.username,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get("/myprofile", withAuth, async (req, res) => {
-//   try {
-//     res.render("newPost", {
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {

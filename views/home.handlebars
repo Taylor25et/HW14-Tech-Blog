@@ -1,8 +1,10 @@
 <!-- all posts content section-->
-<section class="py-5">
+<section class="mb-3 row">
     {{#each posts as |post| }}
     <div class="container my-5">
         <div class="row justify-content-center">
+            <img id="user-img" src="{{post.user.img}}" class="col-sm-2 col-form-label rounded-circle" width="30"
+                alt="User" />
             <div class="col-lg-6">
                 <h2>
                     <a href="/api/posts/{{post.id}}">{{post.title}}</a>
@@ -10,7 +12,7 @@
                 <p class="lead">{{post.user.username}} on {{format_date post.createdAt}}</p>
                 <p class="mb-0">{{post.content}} </p>
                 <div>
-                    <p> {{post.comments.length}} Replies </p>
+                    <p class="comment-count" >{{post.comments.length}} Replies </p>
                     <a href="/api/posts/{{post.id}}">Click to view full post & comments!</a>
                 </div>
             </div>
@@ -18,7 +20,4 @@
     </div>
     {{/each}}
 </section>
-
-
-
-
+<script src="/js/comment.js"></script>

@@ -6,10 +6,11 @@ async function comment(event) {
     const postId = document.querySelector('#post-title').dataset.id;
     const newComment = document.querySelector('#new-comment').value.trim();
     const authMessage = document.querySelector('.auth');
+    const userImg = document.querySelector('#user-img').dataset.id;
     
     const response = await fetch('/api/comment', {
         method: 'POST',
-        body: JSON.stringify({ newComment, postId }),
+        body: JSON.stringify({ newComment, postId, userId, userImg }),
         headers: { "Content-Type": "application/json" }
     });
     

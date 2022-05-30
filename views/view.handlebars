@@ -1,26 +1,30 @@
 {{!-- viewing a single post --}}
 
-<section class="py-5">
+<section class="mb-3 row">
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <img src="{{user.img}}"
-                    width="50" alt="User" /></a>
-                <h2 id='post-title' data-id="{{post.id}}">{{post.title}}
-                </h2>
+                <img id="user-img" src="{{post.user.img}}" class="col-sm-2 mr-3 rounded-circle" width="30" alt="User" />
+                <h1 id='post-title' data-id="{{post.id}}">{{post.title}}
+                </h1>
                 <p class="lead text-muted">{{post.user.username}} on {{format_date post.createdAt}}</p>
-                <p class="mb-0">{{post.content}}</p>
+                <h4>{{post.content}}</h4><br>
                 {{#each post.comments as |comment|}}
                 <div>
-                    <p>{{comment.user.username}} : {{comment.comment}} on {{format_date comment.createdAt}}</p>
+                    <p class="box">{{comment.user.username}} : {{comment.comment}} on {{format_date comment.createdAt}}
+                    </p>
                 </div>
                 {{/each}}
-                <div>
-                    <p class="lead">Reply to {{post.user.username}}</p>
-                    <form name="comment"></form>
-                </div>
-                <button class="btn" type="submit">Add Comment</button>
-                <p class="auth">Please <a href="/login">signup or login</a> to leave a reply.</p>
+                <form class="form comment-form" id="comment-form">
+                    <div class="form-field">
+                        <label for="comment-form" class="col-sm-4 col-form-label">Reply to
+                            {{post.user.username}}</label>
+                        <textarea name="comment" class="comment-field container my-5"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add Comment</button>
+                    <p class="auth" style="display: none;">Please <a href="/login">signup or login</a> to leave a reply.
+                    </p>
+                </form>
             </div>
         </div>
     </div>
@@ -28,29 +32,3 @@
 
 
 <script src="/js/comment.js"></script>
-
-<!-- Forum List -->
-<div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-    <div class="card mb-2">
-        <div class="card-body p-2 p-sm-3">
-            <div class="media forum-item">
-                <a href="#" data-toggle="collapse" data-target=".forum-content"><img
-                        src="https://bootdey.com/img/Content/avatar/avatar1.png" class="col-sm mr-3 rounded-circle"
-                        width="50" alt="User" /></a>
-                <div class="col-sm media-body">
-                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">Realtime
-                            fetching data</a></h6>
-                    <p class="text-secondary">
-                        lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-                    </p>
-                    <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span
-                            class="text-secondary font-weight-bold">13 minutes ago</span></p>
-                </div>
-                <div class="text-muted small text-center align-self-center">
-                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                    <span><i class="far fa-comment ml-2"></i> 3</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

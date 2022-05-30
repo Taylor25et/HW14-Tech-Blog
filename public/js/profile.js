@@ -1,31 +1,33 @@
-// adding a new post
 async function newPost(event) {
     event.preventDefault();
 
     const title = document.querySelector('#new-post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
+   
 
-    const response = await fetch('/api/profile', {
+    if (title && content) {
+      const respond = await fetch('/api/profile', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
         headers: { "Content-Type": "application/json" }
     });
 
-    if (response.ok) {
-        document.location.reload();
+    if (respond.ok) {
+        document.location.replace("/profile");
       } else {
         alert('Failed to add. Check post.js');
       }
+    }
 }
-document.querySelector("#newPost button").addEventListener("submit", newPost);
+document.querySelector("#new-post-form button").addEventListener("submit", newPost);
 
 
-// updating
 async function updatePost(event) {
   event.preventDefault();
 
   const postId = event.target.dataset.id;
   const content = document.getElementById(postId).textContent();
+  
 
   const response = await fetch(`/api/profile/${postId}`, {
       method: 'PUT',
@@ -39,12 +41,10 @@ async function updatePost(event) {
       alert('Failed to add. Check post.js');
     }
 }
-document.querySelectorAll(".post-update").forEach(function(btn) {
-  btn.addEventListener("click", updatePost)
-});
+
+document.querySelectorAll(".post-update").forEach(function(btn) {btn.addEventListener("click", updatePost)});
 
 
-// delete
 async function deletePost(event) {
   event.preventDefault();
 
@@ -60,9 +60,8 @@ async function deletePost(event) {
       alert('Failed to delete. Check post.js');
     }
 }
-document.querySelectorAll(".post-delete").forEach(function(btn) {
-  btn.addEventListener("click", deletePost)
-});
+
+document.querySelectorAll(".post-delete").forEach(function(btn) {btn.addEventListener("click", deletePost)});
 
 
 

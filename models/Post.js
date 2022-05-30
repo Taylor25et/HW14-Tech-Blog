@@ -23,6 +23,11 @@ Post.init(
         len: [3, 100],
       },
     },
+    userimg: {
+      type: DataTypes.STRING,
+    },
+
+
   },
   {
     sequelize,
