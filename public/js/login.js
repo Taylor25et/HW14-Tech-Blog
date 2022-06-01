@@ -1,4 +1,4 @@
-const login = async (event) => {
+async function login (event) {
   event.preventDefault();
 
   // Collect values from the login form
@@ -7,7 +7,7 @@ const login = async (event) => {
 
   if (username && password) { 
     // Send a POST request to the API endpoint
-    const response = await fetch("/api/users/login", {
+    const response = await fetch("/api/user", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -15,14 +15,14 @@ const login = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
-      document.location.replace("/");
+      document.location.replace("/profile");
     } else {
       alert(response.statusText);
     }
   }
 };
 
-const signup = async (event) => {
+async function signup (event) {
   event.preventDefault();
 
   const username = document.querySelector("#username-signup").value.trim();
@@ -37,7 +37,7 @@ const signup = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/profile");
     } else {
       alert(response.statusText);
     }

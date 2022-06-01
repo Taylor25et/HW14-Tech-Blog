@@ -3,7 +3,7 @@
   <form class="form post-form" id="new-post-form">
   <div class="mb-3 row">
     <label for="new-post-title" class="form-label">Post Title:</label>
-    <input type="text" class="form-input" id="new-post-title" placeholder="Fabulous Title">
+    <textarea type="text" class="form-input" id="new-post-title" placeholder="Fabulous Title"></textarea>
   </div>
   <div class="mb-3 row">
     <label for="post-content" class="form-label">Post Text:</label>
@@ -21,16 +21,16 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>
-                    <a href="/api/posts/{{post.id}}">{{post.title}}</a>
+                    <a href="/profile/{{postId}}">{{post.title}}</a>
                 </h2>
                 <p class="lead">{{post.user.username}} on {{format_date post.createdAt}}</p>
                 <p class="mb-0">{{post.content}} </p>
                 <div>
                     <p class="comment-count" >{{post.comments.length}} Replies </p>
-                    <a href="/api/posts/{{post.id}}">Click to view full post & comments!</a>
+                    <a href="/comment/{{postId}}">Click to view full post & comments!</a>
                 </div>
-                 <button class="btn btn-primary post-update" data-id="{{post.id}}">Update Post</button>
-                <button class="btn btn-primary post-delete" data-id="{{post.id}}">Delete Post</button>
+                 <button type="submit" class="btn btn-primary post-update" data-id="{{postId}}">Update Post</button>
+                <button class="btn btn-primary post-delete" data-id="{{postId}}">Delete Post</button>
             </div>
         </div>
     </div>

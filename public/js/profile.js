@@ -1,3 +1,4 @@
+//user creates new post
 async function newPost(event) {
     event.preventDefault();
 
@@ -6,62 +7,62 @@ async function newPost(event) {
    
 
     if (title && content) {
-      const respond = await fetch('/api/profile', {
+      const response = await fetch('/api/profile', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
         headers: { "Content-Type": "application/json" }
     });
 
-    if (respond.ok) {
+    if (response.ok) {
         document.location.replace("/profile");
       } else {
-        alert('Failed to add. Check post.js');
+        alert('Sorry but your post could not be created. Please try again later');
       }
     }
 }
 document.querySelector("#new-post-form button").addEventListener("submit", newPost);
 
-
+//update a user's previous post
 async function updatePost(event) {
   event.preventDefault();
 
   const postId = event.target.dataset.id;
   const content = document.getElementById(postId).textContent();
   
-
+  if (postId && content){
   const response = await fetch(`/api/profile/${postId}`, {
       method: 'PUT',
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ postId, content }),
       headers: { "Content-Type": "application/json" }
   });
 
   if (response.ok) {
-      document.location.reload();
+      document.location.reload("/profile");
     } else {
-      alert('Failed to add. Check post.js');
+      alert('Sorry but your post could not be updated. Please try again later');
     }
+  }
 }
+document.querySelectorAll(".post-update button").addEventListener("click", updatePost);
 
-document.querySelectorAll(".post-update").forEach(function(btn) {btn.addEventListener("click", updatePost)});
-
-
+//deletes a user's post
 async function deletePost(event) {
-  event.preventDefault();
+  if (event.target.hasAttribute('data-id')) {
+    const postId = event.target.hasAttribute('data-id');
 
-  const postId = event.target.dataset.id;
-
-  const response = await fetch(`/api/profile/${postId}`, {
+    const response = await fetch(`/api/profile/${postId}`, {
       method: 'DELETE',
-  });
+    });
 
   if (response.ok) {
-      document.location.reload();
+      document.location.reload("/profile");
     } else {
-      alert('Failed to delete. Check post.js');
+      alert('Sorry but your post could not be deleted. Please try again later');
     }
+  }
 }
 
-document.querySelectorAll(".post-delete").forEach(function(btn) {btn.addEventListener("click", deletePost)});
+document.querySelectorAll(".post-delete button").addEventListener("click", deletePost);
 
 
 

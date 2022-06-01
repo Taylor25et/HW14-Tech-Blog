@@ -1,28 +1,28 @@
-// to add a comment
+// user can add comment to someone's post
+async function addComment(event) {
+    // event.preventDefault();
 
-const addComment = async (event) => {
-    event.preventDefault();
-
-    const comment = document.querySelector('#inputComment').value.trim();
-    const post_id = commentForm.getAttribute('data-id');
+    const postId = document.getElementById('post-title').dataset.id;
+    const newComment = document.querySelector('.comment-field').value.trim();
+    
     // const authMessage = document.querySelector('.auth');
     // const userImg = document.querySelector('#user-img').dataset.id;
     
-    if (comment && post_id) {
-    const respond = await fetch('/api/comment', {
+    if (newComment && postId) {
+    const response = await fetch('/api/comment', {
         method: 'POST',
         body: JSON.stringify({
-          post_id, 
-          comment
+          postId, 
+          newComment
         }),
         headers: { "Content-Type": "application/json" }
     });
+    console.log(addComment)
 
-    if (respond.ok) {
-        document.location.reload();
+    if (response.ok) {
+        document.location.replace("/comment/${}");
       } else {
-        alert(respond.statusText);
+        alert(response.statusText);
       }
 }};
-const commentForm = document.querySelector('.commentForm');
-commentForm.addEventListener('submit', addComment);
+document.getElementById('comment-form').addEventListener('submit', addComment);

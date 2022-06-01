@@ -9,18 +9,16 @@
                 </h1>
                 <p class="lead text-muted">{{post.user.username}} on {{format_date post.createdAt}}</p>
                 <h4>{{post.content}}</h4><br>
-                <form class="commentForm" data-id="{{post.id}}">
+                <form id="comment-form">
 
-                    <div class="form-group">
+                    <div class="form-field">
                         {{!-- <label for="comment-form" class="col-sm-4 col-form-label"><u>Reply to
                                 {{post.user.username}}:</u></label> --}}
-                        <textarea class="form-control container" id="inputComment"></textarea>
+                        <textarea name="addComment" class="form-control container"/></textarea>
                     </div>
 
-                    <button class="btn btn-primary" type="submit"><a href="#"
-                            style="color:white; text-decoration: none;">
-                            <h5>Submit</h5>
-                        </a></button>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+
                     {{!-- <p class="auth" style="display: none;">Please <a href="/login">signup or login</a> to leave a
                         reply.
                     </p> --}}
