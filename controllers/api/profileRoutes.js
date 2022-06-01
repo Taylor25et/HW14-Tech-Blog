@@ -1,7 +1,10 @@
 const router = require("express").Router();
-const { Comment, Post, User } = require("../../models");
+const { Post } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+//from their profile page the user is able to create, update, and delete their posts
+
+//create a user new post
 router.post("/", withAuth, async (req, res) => {
     try {
       await Post.create({
@@ -15,37 +18,7 @@ router.post("/", withAuth, async (req, res) => {
     }
 });
 
-router.get("/", withAuth, async (req, res) => {
-    try {
-      const postData = await Post.findAll( {
-        include: [
-          {
-            model: User,
-            attributes: ["username"],
-          },
-          {
-            model: Comment,
-            include: [{ model: User, attributes: ["username"] }],
-          },
-        ],  
-        where: {
-          user_id: req.session.user_id
-        }
-      });
-      
-      const posts = postData.map((post) => post.get({ plain: true }));
-      res
-        .status(200)
-        .render("profile", {
-          posts,
-          logged_in: req.session.logged_in,
-          username: req.session.username,
-        });
-    } catch (err) {
-      res.status(500).json({ message: "Failed to load, check 2profileRoutes.js" });
-    }
-});
-
+//update user's post
 router.put("/:id", withAuth, async (req, res) => {
     try {
       const postData = await Post.update( 
@@ -67,6 +40,7 @@ router.put("/:id", withAuth, async (req, res) => {
     }
 });
 
+//delete a user's post
 router.delete("/:id", withAuth, async (req, res) => {
     try {
       const postData = await Post.destroy( 

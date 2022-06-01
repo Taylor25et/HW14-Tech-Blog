@@ -1,6 +1,31 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
+//user is able to login, create a new userpofile(signup), or log out
+
+//create a new user profile
+router.post("/", async (req, res) => {
+  try {
+    const newUserData = await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    
+    });
+
+    req.session.save(() => {
+      req.session.user_id = newUserData.id;
+      req.session.username = newUserData.username;
+      req.session.logged_in = true;
+
+      res.status(200).json({ user: newUserData, message: "New Profile created!" });
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+//login as exisiting user
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -34,27 +59,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  try {
-    const newUserData = await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    
-    });
-
-    req.session.save(() => {
-      req.session.user_id = newUserData.id;
-      req.session.username = newUserData.username;
-      req.session.logged_in = true;
-
-      res.status(200).json({ user: newUserData, message: "New Profile created!" });
-    });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
+//logout
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

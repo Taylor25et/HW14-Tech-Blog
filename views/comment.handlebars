@@ -1,0 +1,40 @@
+{{!-- viewing a single post --}}
+
+<section class="mb-3 row">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <img id="user-img" src="{{post.user.img}}" class="col-sm-2 mr-3 rounded-circle" width="30" alt="User" />
+                <h1 id='post-title'>{{post.title}}
+                </h1>
+                <p class="lead text-muted">{{post.user.username}} on {{format_date post.createdAt}}</p>
+                <h4>{{post.content}}</h4><br>
+                <form class="commentForm" data-id="{{post.id}}">
+
+                    <div class="form-group">
+                        {{!-- <label for="comment-form" class="col-sm-4 col-form-label"><u>Reply to
+                                {{post.user.username}}:</u></label> --}}
+                        <textarea class="form-control container" id="inputComment"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit"><a href="#"
+                            style="color:white; text-decoration: none;">
+                            <h5>Submit</h5>
+                        </a></button>
+                    {{!-- <p class="auth" style="display: none;">Please <a href="/login">signup or login</a> to leave a
+                        reply.
+                    </p> --}}
+                </form>
+                {{#each post.comments as |comment|}}
+                <div>
+                    <p><b>{{comment.user.username}}</b>: {{comment.comment}}</p>
+                    <p><small>on {{format_date comment.createdAt}}</small></p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="/js/comment.js"></script>

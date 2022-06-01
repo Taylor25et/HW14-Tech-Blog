@@ -1,29 +1,28 @@
 // to add a comment
 
-async function comment(event) {
+const addComment = async (event) => {
     event.preventDefault();
 
-    const postId = document.querySelector('#post-title').dataset.id;
-    const newComment = document.querySelector('#new-comment').value.trim();
-    const authMessage = document.querySelector('.auth');
-    const userImg = document.querySelector('#user-img').dataset.id;
+    const comment = document.querySelector('#inputComment').value.trim();
+    const post_id = commentForm.getAttribute('data-id');
+    // const authMessage = document.querySelector('.auth');
+    // const userImg = document.querySelector('#user-img').dataset.id;
     
-    const response = await fetch('/api/comment', {
+    if (comment && post_id) {
+    const respond = await fetch('/api/comment', {
         method: 'POST',
-        body: JSON.stringify({ newComment, postId, userId, userImg }),
+        body: JSON.stringify({
+          post_id, 
+          comment
+        }),
         headers: { "Content-Type": "application/json" }
     });
-    
-    console.log(response);
 
-    if (response.ok) {
+    if (respond.ok) {
         document.location.reload();
-      } else if 
-      (response.status == 403) {
-        authMessage.style.display = "block";
       } else {
-        alert('Failed to add. Check comment.js');
+        alert(respond.statusText);
       }
-}
-
-document.getElementById('comment-form').addEventListener('submit', comment);
+}};
+const commentForm = document.querySelector('.commentForm');
+commentForm.addEventListener('submit', addComment);
