@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 });
 
 //clicking into one specific post in order to view comments
-router.get("/:id", async (req, res) => {
+router.get("/comment/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -93,7 +93,7 @@ router.get("/profile", withAuth, async (req, res) => {
 // If the user is already logged in, redirect the request to another route
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/profile");
+    res.redirect("/");
     return;
   }
 

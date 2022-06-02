@@ -20,24 +20,24 @@ async function newPost(event) {
       }
     }
 }
-document.querySelector("#new-post-form button").addEventListener("submit", newPost);
+document.querySelector("#new-post-form").addEventListener("submit", newPost);
 
 //update a user's previous post
 async function updatePost(event) {
   event.preventDefault();
 
-  const postId = event.target.dataset.id;
-  const content = document.getElementById(postId).textContent();
+  const post_id = event.target.dataset.id;
+  const content = document.getElementById(post_id).textContent();
   
   if (postId && content){
-  const response = await fetch(`/api/profile/${postId}`, {
+  const response = await fetch(`/api/profile/${post_id}`, {
       method: 'PUT',
-      body: JSON.stringify({ postId, content }),
+      body: JSON.stringify({ post_id, content }),
       headers: { "Content-Type": "application/json" }
   });
 
   if (response.ok) {
-      document.location.reload("/profile");
+      document.location.reload("/");
     } else {
       alert('Sorry but your post could not be updated. Please try again later');
     }

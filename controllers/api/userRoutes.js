@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
       req.session.username = newUserData.username;
       req.session.logged_in = true;
 
-      res.status(200).json(newUserData);
+      res.status(200).json({newUserData});
     });
   } catch (err) {
     res.status(400).json(err);
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
 //login as exisiting user
 router.post("/login", async (req, res) => {
   try {
-    const userData = await User.findOne({
+    const userData = User.findOne({
       where: { username: req.body.username },
     });
 
@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    const validPassword = userData.checkPassword(req.body.password);
+    const validPassword =  userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res

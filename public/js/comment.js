@@ -25,5 +25,5 @@ async function addComment(event) {
         alert(response.statusText);
       }
 }};
-// document.querySelector('comment-form').addEventListener('submit', addComment);
+// document.querySelector('.comment-form').addEventListener('submit', addComment);
 document.getElementById('comment-form').addEventListener('submit', addComment);

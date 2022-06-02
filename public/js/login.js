@@ -7,7 +7,7 @@ async function login (event) {
 
   if (username && password) { 
     // Send a POST request to the API endpoint
-    const response = await fetch("/api/user", {
+    const response = await fetch("/api/users/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -15,7 +15,7 @@ async function login (event) {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
-      document.location.replace("/");
+      document.location.replace("/profile");
     } else {
       alert(response.statusText);
     }
@@ -37,7 +37,7 @@ async function signup (event) {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/profile");
     } else {
       alert(response.statusText);
     }
