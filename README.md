@@ -1,6 +1,9 @@
 # HW14-Tech-Blog 
+
+[Tech Blog Webpage Deployed Site](https://radiant-basin-40892.herokuapp.com/)
+
 ![gitHubLicense](https://img.shields.io/badge/License-MIT-green.svg)
-[Tech Blog Webpage Deployed Site](https://justanothertxteditor.herokuapp.com/)
+
 ![](public/assets/images/home.png)
 ## Description
 This application is a CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts. This app follows the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.<br>
