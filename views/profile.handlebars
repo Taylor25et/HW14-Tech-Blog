@@ -21,15 +21,15 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>
-                    <a href="/profile/{{postId}}">{{post.title}}</a>
+                    <a href="/profile/{{post_id}}">{{post.title}}</a>
                 </h2>
                 <p class="lead">{{post.user.username}} on {{format_date post.createdAt}}</p>
                 <p class="mb-0">{{post.content}} </p>
                 <div>
                     <p class="comment-count" >{{post.comments.length}} Replies </p>
-                    <a href="/comment/{{postId}}">Click to view full post & comments!</a>
+                    <a href="/comment/{{post_id}}">Click to view full post & comments!</a>
                 </div>
-                 <button type="submit" class="btn btn-primary post-update" data-id="{{postId}}">Update Post</button>
+                 <button type="submit" class="btn btn-primary post-update" data-id="{{post_id}}">Update Post</button>
                 <button class="btn btn-primary post-delete" data-id="{{postId}}">Delete Post</button>
             </div>
         </div>

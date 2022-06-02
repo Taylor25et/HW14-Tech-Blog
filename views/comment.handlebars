@@ -5,30 +5,36 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <img id="user-img" src="{{post.user.img}}" class="col-sm-2 mr-3 rounded-circle" width="30" alt="User" />
+                <input type="hidden" id="post-id" value="{{post.id}}" />
                 <h1 id='post-title'>{{post.title}}
                 </h1>
                 <p class="lead text-muted">{{post.user.username}} on {{format_date post.createdAt}}</p>
                 <h4>{{post.content}}</h4><br>
-                <form id="comment-form">
-
-                    <div class="form-field">
-                        {{!-- <label for="comment-form" class="col-sm-4 col-form-label"><u>Reply to
-                                {{post.user.username}}:</u></label> --}}
-                        <textarea name="addComment" class="form-control container"/></textarea>
-                    </div>
-
-                    <button class="btn btn-primary" type="submit">Submit</button>
-
-                    {{!-- <p class="auth" style="display: none;">Please <a href="/login">signup or login</a> to leave a
-                        reply.
-                    </p> --}}
-                </form>
                 {{#each post.comments as |comment|}}
                 <div>
                     <p><b>{{comment.user.username}}</b>: {{comment.comment}}</p>
                     <p><small>on {{format_date comment.createdAt}}</small></p>
                 </div>
                 {{/each}}
+                {{#if logged_in}}
+                <form id="comment-form">
+
+                    <div class="form-field">
+
+                        {{!-- <label for="comment-form" class="col-sm-4 col-form-label"><u>Reply to
+                                {{post.user.username}}:</u></label> --}}
+
+                        <textarea name="addComment" class="form-control container" id="comment-field"/></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+
+                </form>
+                {{else}}
+                {{!-- <p class="auth">Please <a href="/login">signup or login</a> to leave a
+                    reply.
+                </p> --}}
+                {{/if}}
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
 });
 
 //clicking into one specific post in order to view comments
-router.get("/comment/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -46,6 +46,7 @@ router.get("/comment/:id", async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
+    console.log(post)
 
     res.status(200).render("comment", {
       post,

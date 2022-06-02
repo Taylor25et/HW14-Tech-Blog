@@ -48,9 +48,9 @@ document.querySelectorAll(".post-update button").addEventListener("click", updat
 //deletes a user's post
 async function deletePost(event) {
   if (event.target.hasAttribute('data-id')) {
-    const postId = event.target.hasAttribute('data-id');
+    const post_id = event.target.hasAttribute('data-id');
 
-    const response = await fetch(`/api/profile/${postId}`, {
+    const response = await fetch(`/api/profile/${post_id}`, {
       method: 'DELETE',
     });
 

@@ -7,14 +7,12 @@ const withAuth = require("../../utils/auth");
 //add a comment to someone's post
 router.post("/", withAuth, async (req, res) => {
   try {
-    await Comment.create({
-      comment: req.body.newComment,
-      user_id: req.session.user_id,
-      user_img: req.body.user_img,
-      post_id: req.body.postId
-   
+    console.log(req.body)
+    const newComment = await Comment.create({
+      ...req.body,
+      user_id: req.session.user_id,  
     });
-    res.status(200).json({ message: "Created new comment" });
+    res.status(200).json(newComment);
   } catch (err) {
     res.status(500).json({ message: "Failed to load, check commentRoutes.js" });
   }
